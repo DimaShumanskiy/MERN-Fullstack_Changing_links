@@ -1,6 +1,4 @@
 
-//DimaShumanskiy -- Ridan123258
-
 const express = require('express')//require - скрипт-загрузчик
 const config = require('config')
 const mongoose = require('mongoose')
