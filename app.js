@@ -7,6 +7,10 @@ const mongoose = require('mongoose')
 
 const app = express()
 
+// порты для обработки фронта (middleware)
+app.use('/api/auth', require('./routes/auth.routes')) // авторизация
+
+
 const PORT = config.get('port') || 5000
 
 async function start() {//обертка для метода connect
