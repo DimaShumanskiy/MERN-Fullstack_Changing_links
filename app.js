@@ -5,6 +5,8 @@ const mongoose = require('mongoose')
 
 const app = express()
 
+//миделВэер
+app.use(express.json({ extended: true}))
 // порты для обработки фронта (middleware)
 app.use('/api/auth', require('./routes/auth.routes')) // авторизация
 
