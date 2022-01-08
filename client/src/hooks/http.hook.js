@@ -7,14 +7,14 @@ export const useHttp = () => { // кастомный хук запроса
     const request = useCallback(async (url, method = 'GET', body = null, headers = {}) => {
         setLoading(true)
         try {
-            if(body){
+            if (body) {
                 body = JSON.stringify(body)
                 headers['Content-Type'] = 'application/json'
             }
-            const response =  await fetch(url,{method,body, headers})// запрос
+            const response = await fetch(url, {method, body, headers})// запрос
             const data = await response.json()   //распарсить
 
-            if(!response.ok){
+            if (!response.ok) {
                 throw new Error(data.message || 'что-то пошло не так')
             }
             setLoading(false)
@@ -24,8 +24,8 @@ export const useHttp = () => { // кастомный хук запроса
             setError(e.message)
             throw e
         }
-    },[])//useCallback - что бы реакт не входил в рекурсию,  async - делает функцию синхронной
+    }, [])//useCallback - что бы реакт не входил в рекурсию,  async - делает функцию синхронной
 
-    const clearError = () => setError(null)
+    const clearError = useCallback(() => setError(null), [])
     return {loading, request, error, clearError}
 }

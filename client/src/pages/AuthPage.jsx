@@ -1,15 +1,21 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import 'materialize-css'
 import {useHttp} from "../hooks/http.hook";
+import {useMessage} from "../hooks/message.hook";
 
 export const AuthPage = () => {
-
-    const {loading, request} = useHttp()// кастомный хук запроса
+    const message = useMessage()
+    const {loading, request, error,clearError} = useHttp()// кастомный хук запроса
 
     const [form, setForm] = useState({
         email: '',
         password: ''
     })
+
+    useEffect(() => {
+        message(error)
+        clearError()
+    }, [error, message, clearError])
     const changeHandler = (event) => {
         setForm({...form, [event.target.name]: event.target.value})//[event.target.name] - динамический ключ меняющегося поля
     }
@@ -17,7 +23,7 @@ export const AuthPage = () => {
     const registerHandler = async () => {
         try {
             const data = await request('/api/auth/register', 'POST', {...form})
-            console.log('data', data)
+            message(data.message)
         } catch (e) {
         }
     }
