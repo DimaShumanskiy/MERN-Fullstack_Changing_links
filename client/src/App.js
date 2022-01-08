@@ -3,6 +3,7 @@ import {useRoutes} from "./routes";
 import {useAuth} from "./hooks/auth.hook";
 import 'materialize-css'
 import {AuthContext} from "./context/AuthContext";
+import {NavBar} from "./components/NavBar";
 
 
 // AuthContext получение данных через Context
@@ -15,6 +16,7 @@ function App() {
         <AuthContext.Provider value={{
             token, login, logout, userId,isAuthenticated
         }}>
+            {isAuthenticated && <NavBar/>}
             <div className='container'>
                 {/*<h1>Hello</h1>*/}
                 {routes}
