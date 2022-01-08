@@ -45,10 +45,11 @@ router.post(
             res.status(500).json({message: 'Что то пошло не так, попробуйте снова'})
         }
     })
+
 router.post(
     '/login',
     [
-        check('email', 'Введите корректный email').normalizeEmail().isEmail,
+        check('email', 'Введите корректный email').normalizeEmail().isEmail(),
         check('password', 'Введите пароль').exists()
     ],
     async (req, res) => {

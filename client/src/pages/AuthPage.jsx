@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import 'materialize-css'
 import {useHttp} from "../hooks/http.hook";
 import {useMessage} from "../hooks/message.hook";
+import {AuthContext} from "../context/AuthContext";
 
 export const AuthPage = () => {
+    const auth = useContext(AuthContext)
     const message = useMessage()
     const {loading, request, error,clearError} = useHttp()// кастомный хук запроса
 
@@ -26,6 +28,12 @@ export const AuthPage = () => {
             message(data.message)
         } catch (e) {
         }
+    }
+    const loginHandler = async () => {
+        try {
+            const data = await request('/api/auth/login', 'POST', {...form})
+            auth.login(data.token, data.userId)
+        } catch (e) {}
     }
 
     return (
@@ -66,6 +74,7 @@ export const AuthPage = () => {
                             className="btn yellow darken-4"
                             style={{marginRight: 10}}
                             disabled={loading}
+                            onClick={loginHandler}
                         >Войти
                         </button>
                         <button
