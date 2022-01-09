@@ -1,18 +1,13 @@
 {
   "name": "mern-fullstack",
-  "homepage": "https://DimaShumanskiy.github.io/MERN-Fullstack_Changing_links",
   "version": "1.0.0",
   "description": "Mern stak",
   "main": "app.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node app.js",
+    "start": "node app.js",
     "server": "nodemon app.js",
     "client": "npm run start --prefix client",
-    "client:install": "npm install --prefix client",
-    "client:build": "npm run build --prefix client",
-    "dev": "cross-env NODE_ENV=development concurrently \"npm run server\"  \"npm run client\"",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "dev": "concurrently \"npm run server\"  \"npm run client\""
   },
   "keywords": [
     "mern",
@@ -32,7 +27,6 @@
   },
   "devDependencies": {
     "concurrently": "^6.5.1",
-    "cross-env": "^7.0.3",
     "nodemon": "^2.0.15"
   }
 }
