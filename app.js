@@ -10,7 +10,6 @@ app.use(express.json({ extended: true}))
 // порты для обработки фронта (middleware)
 app.use('/api/auth', require('./routes/auth.routes')) // авторизация
 app.use('/api/link', require('./routes/link.routes'))// изменение ссылки
-app.use('/t/', require('./routes/redirect.routes'))
 
 if (process.env.NODE_ENV === 'production'){
     app.use('/', express.static(path.join(__dirname, 'client', 'build')))// при запросе в корень проекта
