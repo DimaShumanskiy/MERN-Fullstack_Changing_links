@@ -10,6 +10,7 @@ app.use(express.json({ extended: true}))
 // порты для обработки фронта (middleware)
 app.use('/api/auth', require('./routes/auth.routes')) // авторизация
 app.use('/api/link', require('./routes/link.routes'))// изменение ссылки
+app.use('/t/', require('./routes/redirect.routes'))
 
 const PORT = config.get('port') || 5000
 
